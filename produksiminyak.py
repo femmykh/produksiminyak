@@ -2,7 +2,6 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
-[theme]
 # Main Page
 st.set_page_config(page_icon = "ferris_wheel", layout = "wide")
 st.header("Pusat Informasi Negara Penghasil Minyak")
