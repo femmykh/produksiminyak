@@ -3,7 +3,7 @@ import plotly.express as px
 import streamlit as st
 
 # Main Page
-st.set_page_config(page_icon = "penguin", layout = "wide")
+st.set_page_config(page_title = "Pusat Informasi Negara Penghasil Minyak", page_icon = "penguin", layout = "wide")
 st.header("Pusat Informasi Negara Penghasil Minyak")
 # Creator
 st.markdown("**Femmy Khairany Hemas** — **12220110**")
