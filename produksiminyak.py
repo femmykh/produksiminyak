@@ -94,7 +94,7 @@ if st.sidebar.checkbox("Lihat negara"):
             
 # Analisa data berdasarkan tahun
 st.sidebar.subheader("Analisa data berdasarkan tahun")
-pilihanTahun = st.sidebar.selectbox('Pilih Tahun',dataset['Tahun'])
+pilihanTahun = st.sidebar.selectbox('Pilih tahun',dataset['Tahun'])
 tahun = dataset[dataset['Tahun'] == pilihanTahun]
 
 def get_total_year(dataset):
