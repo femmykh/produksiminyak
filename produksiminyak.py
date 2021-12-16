@@ -20,11 +20,11 @@ mergeResult = pd.merge(left=data_kode_negara, right=data_produksi_minyak, left_o
 dataframe = dataHasil=mergeResult[['name','tahun','produksi','alpha-3','country-code','iso_3166-2','region','sub-region','intermediate-region','region-code','sub-region-code']]
 dataset = dataframe.rename({'name': 'Negara','produksi':'Produksi' ,'tahun': 'Tahun','alpha-3':'Kode'}, axis='columns')
 
-# Data awal
-lihat_data = st.button('Lihat data awal')
+# Data seluruh tahun
+lihat_data = st.button('Lihat data seluruh tahun')
 if lihat_data:
      # Negara dengan produksi minyak tertinggi
-     st.subheader('Produksi minyak paling tinggi:')
+     st.subheader("Negara dengan produksi minyak tertinggi:")
      info_data = dataset[['Negara','Tahun','Produksi','Kode','region','sub-region']]
      hasil = info_data[info_data['Produksi'] == info_data['Produksi'].max()]
      st.dataframe(hasil)
@@ -36,11 +36,11 @@ if lihat_data:
      total = Data[Data['Produksi Kumulatif'] == Data['Produksi Kumulatif'].max()]
      bar_chart = px.bar(Data, x='Tahun',y='Produksi')
      st.plotly_chart(bar_chart,use_container_width=True)
-     st.subheader("Produksi minyak paling tinggi secara kumulatif:")
+     st.subheader("Negara dengan produksi minyak paling tinggi secara kumulatif:")
      st.dataframe(total)
 
      # Negara dengan produksi minyak terendah
-     st.subheader("Produksi minyak paling rendah:")
+     st.subheader("Negara dengan produksi minyak paling rendah:")
      Data = dataset[dataset['Produksi'] != 0]
      Data = Data[['Negara','Tahun','Produksi','Kode','region','sub-region']]
      total = Data[Data['Produksi']==Data['Produksi'].min()]
@@ -48,7 +48,7 @@ if lihat_data:
 
      # Negara yang produksinya 0
      Data = dataset[dataset['Produksi'] == 0]
-     st.subheader("Negara-negara yang tidak berproduksi:")
+     st.subheader("Negara yang tidak memiliki produksi minyak:")
      total = Data[['Negara','Tahun','Produksi','Kode','country-code','region','sub-region']]
      st.dataframe(total)
 
@@ -67,18 +67,18 @@ def get_data_info(dataset):
     return info_data
 
 state_total = get_total_dataframe(state_data)
-if st.sidebar.checkbox("Lihat Negara"):
-     st.header("Analisa data Negara")
-     st.subheader("Tampilan data negara: "+pilihanNegara)
-     st.write(state_total,width=2024, height=2000)
+if st.sidebar.checkbox("Lihat negara"):
+     st.header("Analisa data negara")
+     st.subheader("Tampilan data Negara: "+pilihanNegara)
+     st.write(state_total,width=2024,height=2000)
 
      if st.sidebar.checkbox("Lihat grafik"):
-          st.subheader("Tampilan grafik pada negara: "+pilihanNegara)
+          st.subheader("Tampilan grafik pada Negara: "+pilihanNegara)
           state_total_graph = px.bar(state_total, x='Tahun',y='Produksi',labels=("Negara penghasil minyak = "+pilihanNegara))
           st.plotly_chart(state_total_graph,use_container_width=True)
 
-          # Menampilkan data banyak negara yang ingin dilihat
-          jumlah_data = st.text_input("Masukkan data untuk menampilkan jumlah data:")
+          # Menampilkan data banyak tahun yang ingin dilihat
+          jumlah_data = st.text_input("Masukkan banyak tahun yang ingin dilihat:")
           if jumlah_data:
                data__tampil = state_total.nlargest(int(jumlah_data), 'Produksi')
                data_hasil = data__tampil[['Negara','Tahun','Produksi']]
@@ -86,7 +86,7 @@ if st.sidebar.checkbox("Lihat Negara"):
                st.plotly_chart(max_data,use_container_width=True)
           
           # Menampilkan detail data negara
-          if st.sidebar.checkbox("Lihat detail negara produksi "+pilihanNegara):
+          if st.sidebar.checkbox("Lihat detail produksi Negara"+pilihanNegara):
                st.header("Data untuk Negara "+pilihanNegara)
                info_negara = get_data_info(state_data)
                st.write(info_negara)
@@ -106,13 +106,13 @@ if st.sidebar.checkbox("Lihat Tahun"):
      dataset_bersih = dataset[dataset['Produksi'] != 0]
      dataset_tahun = dataset_bersih[['Negara','Tahun','Produksi','Kode','region','sub-region']]
      st.header("Analisa data berdasarkan Tahun")
-     if st.sidebar.checkbox("Grafik berdasar tahun"):
+     if st.sidebar.checkbox("Grafik berdasarkan tahun"):
           st.subheader("Data negara penghasil pada tahun "+str(pilihanTahun))
           year_total_graph = px.bar(year_total,x='Produksi',y='Negara',labels={'Jumlah':'Produksi tahun %s' % (pilihanTahun)})
           st.plotly_chart(year_total_graph,use_container_width=True)
           
-          # Menampilkan data negara dengan produksi minyak terbanyak
-          st.subheader("Tampilan data produksi terbanyak")
+          # Menampilkan data negara dengan jumlah produksi minyak terbanyak
+          st.subheader("Tampilan data produksi terbanyak pada tahun "+str(pilihanTahun))
           jumlah_tampil = st.text_input('Masukkan jumlah data untuk ditampilkan:')
           if jumlah_tampil:
                data_5 = year_total.nlargest(int(jumlah_tampil), 'Produksi')
@@ -121,20 +121,20 @@ if st.sidebar.checkbox("Lihat Tahun"):
                st.plotly_chart(max_data,use_container_width=True)
                
      if st.sidebar.checkbox("Informasi data berdasar tahun"):
-          # Negara dengan jumlah produksi tertinggi
-          st.markdown("Produksi paling tinggi %s"%(pilihanTahun))
+          # Negara dengan jumlah produksi minyak tertinggi
+          st.markdown("Negara dengan produksi minyak tertinggi %s"%(pilihanTahun))
           data_tahun =dataset_tahun[dataset_tahun["Tahun"] == pilihanTahun]
           data_tahun=data_tahun[data_tahun['Produksi']==data_tahun['Produksi'].max()]
           st.write(data_tahun)
 
-          # Negara dengan jumlah produksi terendah
-          st.markdown("Produksi paling rendah %s"%(pilihanTahun))
+          # Negara dengan jumlah produksi minyak terendah
+          st.markdown("Negara dengan produksi minyak terendah %s"%(pilihanTahun))
           data_rendah =dataset_tahun[dataset_tahun["Tahun"] == pilihanTahun]
           data_rendah=data_rendah[data_rendah['Produksi']==data_rendah['Produksi'].min()]
           st.write(data_rendah)
 
-          # Negara dengan jumlah produksi 0
-          st.markdown("Negara tidak produksi pada tahun %s"%(pilihanTahun))
+          # Negara dengan jumlah produksi minyak 0
+          st.markdown("Negara yang tidak memiliki produksi minyak pada tahun %s"%(pilihanTahun))
           data = dataset[dataset["Tahun"] == pilihanTahun]
           data = data[data['Produksi'] == 0]
           hasil = data[['Negara','Tahun','Produksi','Kode','region','sub-region']]
