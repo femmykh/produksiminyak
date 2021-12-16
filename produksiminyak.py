@@ -121,18 +121,19 @@ if st.sidebar.checkbox("Lihat Tahun"):
                st.plotly_chart(max_data,use_container_width=True)
                
      if st.sidebar.checkbox("Informasi data berdasar tahun"):
+          colt1, colt2 = st.columns(2)
           # Negara dengan jumlah produksi minyak tertinggi
-          st.subheader("Negara dengan produksi minyak tertinggi pada tahun "+str(pilihanTahun))
+          colt1.subheader("Negara dengan produksi minyak tertinggi pada tahun "+str(pilihanTahun))
           data_tahun =dataset_tahun[dataset_tahun["Tahun"] == pilihanTahun]
           data_tahun=data_tahun[data_tahun['Produksi']==data_tahun['Produksi'].max()]
-          st.write(data_tahun)
+          colt1.write(data_tahun)
 
           # Negara dengan jumlah produksi minyak terendah
-          st.subheader("Negara dengan produksi minyak terendah pada tahun "+str(pilihanTahun))
+          colt2.subheader("Negara dengan produksi minyak terendah pada tahun "+str(pilihanTahun))
           data_rendah =dataset_tahun[dataset_tahun["Tahun"] == pilihanTahun]
           data_rendah=data_rendah[data_rendah['Produksi']==data_rendah['Produksi'].min()]
-          st.write(data_rendah)
-
+          colt2.write(data_rendah)
+          
           # Negara dengan jumlah produksi minyak 0
           st.subheader("Negara yang tidak memiliki produksi minyak pada tahun "+str(pilihanTahun))
           data = dataset[dataset["Tahun"] == pilihanTahun]
