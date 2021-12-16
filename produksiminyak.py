@@ -4,7 +4,10 @@ import streamlit as st
 
 # Main Page
 st.set_page_config(page_title = "Pusat Informasi Negara Penghasil Minyak", page_icon = "penguin", layout = "wide")
-st.header("Pusat Informasi Negara Penghasil Minyak")
+col1, col2 = st.columns((0.05, 1))
+col1.image("logo_itb_1024.png", width=100)
+title = '<p style="font-family: sans-serif; font-size: 40px; text-align: center;"><b>Pusat Informasi Negara Penghasil Minyak</b></p>'
+col2.markdown(title, unsafe_allow_html=True)
 # Creator
 st.markdown("**Femmy Khairany Hemas** — **12220110**")
 
