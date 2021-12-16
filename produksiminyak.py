@@ -34,7 +34,7 @@ if lihat_data:
      Data = Data[['Negara','Tahun','Produksi','Kode','region','sub-region']]
      Data['Produksi Kumulatif'] = Data['Produksi'].cumsum()
      total = Data[Data['Produksi Kumulatif'] == Data['Produksi Kumulatif'].max()]
-     bar_chart = px.bar(Data, x='Tahun',y='Produksi',color="lightgreen")
+     bar_chart = px.bar(Data, x='Tahun',y='Produksi',color='lightgreen'")
      st.plotly_chart(bar_chart,use_container_width=True)
      st.subheader("Produksi minyak paling tinggi secara kumulatif:")
      st.dataframe(total)
@@ -74,7 +74,7 @@ if st.sidebar.checkbox("Lihat Negara"):
 
      if st.sidebar.checkbox("Lihat grafik"):
           st.subheader("Tampilan grafik pada negara: "+pilihanNegara)
-          state_total_graph = px.bar(state_total, x='Tahun',y='Produksi',color="lightcoral",labels=("Negara penghasil minyak = "+pilihanNegara))
+          state_total_graph = px.bar(state_total, x='Tahun',y='Produksi',color='lightcoral',labels=("Negara penghasil minyak = "+pilihanNegara))
           st.plotly_chart(state_total_graph,use_container_width=True)
 
           # Menampilkan data banyak negara yang ingin dilihat
@@ -82,7 +82,7 @@ if st.sidebar.checkbox("Lihat Negara"):
           if jumlah_data:
                data__tampil = state_total.nlargest(int(jumlah_data), 'Produksi')
                data_hasil = data__tampil[['Negara','Tahun','Produksi']]
-               max_data = px.bar(data_hasil, x='Tahun',y='Produksi',color="lightcoral",labels={'Jumlah':'Produksi tahun %s' % (pilihanNegara)})
+               max_data = px.bar(data_hasil, x='Tahun',y='Produksi',color='lightgreen',labels={'Jumlah':'Produksi tahun %s' % (pilihanNegara)})
                st.plotly_chart(max_data,use_container_width=True)
           
           # Menampilkan detail data negara
@@ -108,7 +108,7 @@ if st.sidebar.checkbox("Lihat Tahun"):
      st.header("Analisa data berdasarkan Tahun")
      if st.sidebar.checkbox("Grafik berdasar tahun"):
           st.subheader("Data negara penghasil pada tahun "+str(pilihanTahun))
-          year_total_graph = px.bar(year_total,x='Produksi',y='Negara',color="lightgreen",labels={'Jumlah':'Produksi tahun %s' % (pilihanTahun)})
+          year_total_graph = px.bar(year_total,x='Produksi',y='Negara',color='lightcoral',labels={'Jumlah':'Produksi tahun %s' % (pilihanTahun)})
           st.plotly_chart(year_total_graph,use_container_width=True)
           
           # Menampilkan data negara dengan produksi minyak terbanyak
@@ -117,7 +117,7 @@ if st.sidebar.checkbox("Lihat Tahun"):
           if jumlah_tampil:
                data_5 = year_total.nlargest(int(jumlah_tampil), 'Produksi')
                data_hasil = data_5[['Negara','Tahun','Produksi']]
-               max_data = px.bar(data_hasil, x='Produksi',y='Negara',color="lightcoral",labels={'Jumlah':'Produksi tahun %s' % (pilihanTahun)})
+               max_data = px.bar(data_hasil, x='Produksi',y='Negara',color='lightgreen',labels={'Jumlah':'Produksi tahun %s' % (pilihanTahun)})
                st.plotly_chart(max_data,use_container_width=True)
                
      if st.sidebar.checkbox("Informasi data berdasar tahun"):
