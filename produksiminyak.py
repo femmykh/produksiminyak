@@ -102,10 +102,10 @@ def get_total_year(dataset):
     return year_dataframe
 year_total = get_total_year(tahun)
 
-if st.sidebar.checkbox("Lihat Tahun"):
+if st.sidebar.checkbox("Lihat tahun"):
      dataset_bersih = dataset[dataset['Produksi'] != 0]
      dataset_tahun = dataset_bersih[['Negara','Tahun','Produksi','Kode','region','sub-region']]
-     st.header("Analisa data berdasarkan Tahun")
+     st.header("Analisa data berdasarkan tahun")
      if st.sidebar.checkbox("Grafik berdasarkan tahun"):
           st.subheader("Data negara penghasil minyak pada tahun "+str(pilihanTahun))
           year_total_graph = px.bar(year_total,x='Produksi',y='Negara',labels={'Jumlah':'Produksi tahun %s' % (pilihanTahun)})
