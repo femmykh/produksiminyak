@@ -68,7 +68,7 @@ def get_data_info(dataset):
 
 state_total = get_total_dataframe(state_data)
 if st.sidebar.checkbox("Lihat negara"):
-     st.header("Analisa data negara")
+     st.header("Analisa data produksi minyak berdasarkan negara")
      st.subheader("Tampilan data produksi minyak Negara "+pilihanNegara)
      st.write(state_total,width=2024,height=2000)
 
