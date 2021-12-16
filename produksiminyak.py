@@ -8,7 +8,7 @@ col1, col2, col3 = st.columns((0.5, 1, 0.5))
 col1.image("oil tumpah.png", width=200)
 title = '<p style="font-family: sans-serif; font-size: 50px; text-align: center;"><b>Pusat Informasi Negara Penghasil Minyak</b></p>'
 col2.markdown(title, unsafe_allow_html=True)
-col3.image("logo_itb_1024.png", width=180)
+col3.image("logo_itb_1024.png", width=200)
 
 # Creator
 st.markdown("**Femmy Khairany Hemas** — **12220110**")
