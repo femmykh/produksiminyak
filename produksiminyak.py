@@ -21,7 +21,7 @@ dataframe = dataHasil=mergeResult[['name','tahun','produksi','alpha-3','country-
 dataset = dataframe.rename({'name': 'Negara','produksi':'Produksi' ,'tahun': 'Tahun','alpha-3':'Kode'}, axis='columns')
 
 # Data seluruh tahun
-lihat_data = st.button('Lihat data seluruh tahun')
+lihat_data = st.button('Lihat data produksi minyak seluruh tahun')
 if lihat_data:
      # Negara dengan produksi minyak tertinggi
      st.subheader("Negara dengan produksi minyak tertinggi")
@@ -69,16 +69,16 @@ def get_data_info(dataset):
 state_total = get_total_dataframe(state_data)
 if st.sidebar.checkbox("Lihat negara"):
      st.header("Analisa data negara")
-     st.subheader("Tampilan data Negara "+pilihanNegara)
+     st.subheader("Tampilan data produksi minyak Negara "+pilihanNegara)
      st.write(state_total,width=2024,height=2000)
 
      if st.sidebar.checkbox("Lihat grafik"):
-          st.subheader("Tampilan grafik pada Negara "+pilihanNegara)
+          st.subheader("Tampilan grafik produksi minyak pada Negara "+pilihanNegara)
           state_total_graph = px.bar(state_total, x='Tahun',y='Produksi',labels=("Negara penghasil minyak = "+pilihanNegara))
           st.plotly_chart(state_total_graph,use_container_width=True)
 
           # Menampilkan data banyak tahun yang ingin dilihat
-          st.subheader("Tahun dengan produksi terbanyak pada Negara "+pilihanNegara)
+          st.subheader("Tahun dengan produksi minyak terbanyak pada Negara "+pilihanNegara)
           jumlah_data = st.text_input("Masukkan banyak tahun yang ingin dilihat:")
           if jumlah_data:
                data__tampil = state_total.nlargest(int(jumlah_data), 'Produksi')
@@ -87,7 +87,7 @@ if st.sidebar.checkbox("Lihat negara"):
                st.plotly_chart(max_data,use_container_width=True)
           
           # Menampilkan detail data negara
-          if st.sidebar.checkbox("Lihat detail produksi Negara "+pilihanNegara):
+          if st.sidebar.checkbox("Lihat detail produksi minyak Negara "+pilihanNegara):
                st.header("Data untuk Negara "+pilihanNegara)
                info_negara = get_data_info(state_data)
                st.write(info_negara)
@@ -106,14 +106,14 @@ year_total = get_total_year(tahun)
 if st.sidebar.checkbox("Lihat tahun"):
      dataset_bersih = dataset[dataset['Produksi'] != 0]
      dataset_tahun = dataset_bersih[['Negara','Tahun','Produksi','Kode','region','sub-region']]
-     st.header("Analisa data berdasarkan tahun")
+     st.header("Analisa data produksi minyak berdasarkan tahun")
      if st.sidebar.checkbox("Grafik berdasarkan tahun"):
           st.subheader("Data negara penghasil minyak pada tahun "+str(pilihanTahun))
           year_total_graph = px.bar(year_total,x='Produksi',y='Negara',labels={'Jumlah':'Produksi tahun %s' % (pilihanTahun)})
           st.plotly_chart(year_total_graph,use_container_width=True)
           
           # Menampilkan data negara dengan jumlah produksi minyak terbanyak
-          st.subheader("Negara dengan produksi terbanyak pada tahun "+str(pilihanTahun))
+          st.subheader("Negara dengan produksi minyak terbanyak pada tahun "+str(pilihanTahun))
           jumlah_tampil = st.text_input('Masukkan banyak negara yang ingin dilihat:')
           if jumlah_tampil:
                data_5 = year_total.nlargest(int(jumlah_tampil), 'Produksi')
