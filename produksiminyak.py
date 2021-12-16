@@ -34,7 +34,7 @@ if lihat_data:
      Data = Data[['Negara','Tahun','Produksi','Kode','region','sub-region']]
      Data['Produksi Kumulatif'] = Data['Produksi'].cumsum()
      total = Data[Data['Produksi Kumulatif'] == Data['Produksi Kumulatif'].max()]
-     bar_chart = px.bar(Data, x='Tahun',y='Produksi',color='lightgreen'")
+     bar_chart = px.bar(Data, x='Tahun',y='Produksi',color='lightgreen')
      st.plotly_chart(bar_chart,use_container_width=True)
      st.subheader("Produksi minyak paling tinggi secara kumulatif:")
      st.dataframe(total)
