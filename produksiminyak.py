@@ -28,7 +28,7 @@ if lihat_data:
      info_data = dataset[['Negara','Tahun','Produksi','Kode','region','sub-region']]
      hasil = info_data[info_data['Produksi'] == info_data['Produksi'].max()]
      st.dataframe(hasil)
-     
+   
      # Negara dengan produksi minyak kumulatif tertinggi
      Data=dataset[dataset['Negara']=='Saudi Arabia']
      Data = Data[['Negara','Tahun','Produksi','Kode','region','sub-region']]
@@ -107,19 +107,18 @@ if st.sidebar.checkbox("Lihat Tahun"):
      dataset_tahun = dataset_bersih[['Negara','Tahun','Produksi','Kode','region','sub-region']]
      st.header("Analisa data berdasarkan Tahun")
      if st.sidebar.checkbox("Grafik berdasarkan tahun"):
-          colt1, colt2 = st.columns(2)
-          colt1.subheader("Data negara penghasil minyak pada tahun "+str(pilihanTahun))
+          st.subheader("Data negara penghasil minyak pada tahun "+str(pilihanTahun))
           year_total_graph = px.bar(year_total,x='Produksi',y='Negara',labels={'Jumlah':'Produksi tahun %s' % (pilihanTahun)})
-          colt1.plotly_chart(year_total_graph,use_container_width=True)
+          st.plotly_chart(year_total_graph,use_container_width=True)
           
           # Menampilkan data negara dengan jumlah produksi minyak terbanyak
-          colt2.subheader("Negara dengan produksi terbanyak pada tahun "+str(pilihanTahun))
+          st.subheader("Negara dengan produksi terbanyak pada tahun "+str(pilihanTahun))
           jumlah_tampil = st.text_input('Masukkan banyak negara yang ingin diilihat:')
           if jumlah_tampil:
                data_5 = year_total.nlargest(int(jumlah_tampil), 'Produksi')
                data_hasil = data_5[['Negara','Tahun','Produksi']]
                max_data = px.bar(data_hasil, x='Produksi',y='Negara',labels={'Jumlah':'Produksi tahun %s' % (pilihanTahun)})
-               colt2.plotly_chart(max_data,use_container_width=True)
+               st.plotly_chart(max_data,use_container_width=True)
                
      if st.sidebar.checkbox("Informasi data berdasar tahun"):
           # Negara dengan jumlah produksi minyak tertinggi
