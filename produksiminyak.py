@@ -107,32 +107,32 @@ if st.sidebar.checkbox("Lihat Tahun"):
      dataset_tahun = dataset_bersih[['Negara','Tahun','Produksi','Kode','region','sub-region']]
      st.header("Analisa data berdasarkan Tahun")
      if st.sidebar.checkbox("Grafik berdasarkan tahun"):
-          st.subheader("Data negara penghasil minyak pada tahun "+str(pilihanTahun))
+          colt1, colt2 = st.columns(2)
+          colt1.subheader("Data negara penghasil minyak pada tahun "+str(pilihanTahun))
           year_total_graph = px.bar(year_total,x='Produksi',y='Negara',labels={'Jumlah':'Produksi tahun %s' % (pilihanTahun)})
-          st.plotly_chart(year_total_graph,use_container_width=True)
+          colt1.plotly_chart(year_total_graph,use_container_width=True)
           
           # Menampilkan data negara dengan jumlah produksi minyak terbanyak
-          st.subheader("Negara dengan produksi terbanyak pada tahun "+str(pilihanTahun))
+          colt2.subheader("Negara dengan produksi terbanyak pada tahun "+str(pilihanTahun))
           jumlah_tampil = st.text_input('Masukkan banyak negara yang ingin diilihat:')
           if jumlah_tampil:
                data_5 = year_total.nlargest(int(jumlah_tampil), 'Produksi')
                data_hasil = data_5[['Negara','Tahun','Produksi']]
                max_data = px.bar(data_hasil, x='Produksi',y='Negara',labels={'Jumlah':'Produksi tahun %s' % (pilihanTahun)})
-               st.plotly_chart(max_data,use_container_width=True)
+               colt2.plotly_chart(max_data,use_container_width=True)
                
      if st.sidebar.checkbox("Informasi data berdasar tahun"):
-          colt1, colt2 = st.columns(2)
           # Negara dengan jumlah produksi minyak tertinggi
-          colt1.subheader("Negara dengan produksi minyak tertinggi pada tahun "+str(pilihanTahun))
+          st.subheader("Negara dengan produksi minyak tertinggi pada tahun "+str(pilihanTahun))
           data_tahun =dataset_tahun[dataset_tahun["Tahun"] == pilihanTahun]
           data_tahun=data_tahun[data_tahun['Produksi']==data_tahun['Produksi'].max()]
-          colt1.write(data_tahun)
+          st.write(data_tahun)
 
           # Negara dengan jumlah produksi minyak terendah
-          colt2.subheader("Negara dengan produksi minyak terendah pada tahun "+str(pilihanTahun))
+          st.subheader("Negara dengan produksi minyak terendah pada tahun "+str(pilihanTahun))
           data_rendah =dataset_tahun[dataset_tahun["Tahun"] == pilihanTahun]
           data_rendah=data_rendah[data_rendah['Produksi']==data_rendah['Produksi'].min()]
-          colt2.write(data_rendah)
+          st.write(data_rendah)
           
           # Negara dengan jumlah produksi minyak 0
           st.subheader("Negara yang tidak memiliki produksi minyak pada tahun "+str(pilihanTahun))
