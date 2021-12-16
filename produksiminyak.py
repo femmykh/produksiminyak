@@ -122,13 +122,13 @@ if st.sidebar.checkbox("Lihat Tahun"):
                
      if st.sidebar.checkbox("Informasi data berdasar tahun"):
           # Negara dengan jumlah produksi minyak tertinggi
-          st.markdown("Negara dengan produksi minyak tertinggi pada tahun %s"%(pilihanTahun))
+          st.subheader("Negara dengan produksi minyak tertinggi pada tahun "+str(pilihanTahun))
           data_tahun =dataset_tahun[dataset_tahun["Tahun"] == pilihanTahun]
           data_tahun=data_tahun[data_tahun['Produksi']==data_tahun['Produksi'].max()]
           st.write(data_tahun)
 
           # Negara dengan jumlah produksi minyak terendah
-          st.markdown("Negara dengan produksi minyak terendah pada tahun %s"%(pilihanTahun))
+          st.subheader("Negara dengan produksi minyak terendah pada tahun "+str(pilihanTahun))
           data_rendah =dataset_tahun[dataset_tahun["Tahun"] == pilihanTahun]
           data_rendah=data_rendah[data_rendah['Produksi']==data_rendah['Produksi'].min()]
           st.write(data_rendah)
