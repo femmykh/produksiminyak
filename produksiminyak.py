@@ -88,7 +88,7 @@ if st.sidebar.checkbox("Lihat negara"):
           
           # Menampilkan detail data negara
           if st.sidebar.checkbox("Lihat detail produksi minyak Negara "+pilihanNegara):
-               st.header("Data untuk Negara "+pilihanNegara)
+               st.header("Data lengkap produksi minyak untuk Negara "+pilihanNegara)
                info_negara = get_data_info(state_data)
                st.write(info_negara)
             
