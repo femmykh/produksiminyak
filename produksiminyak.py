@@ -134,7 +134,7 @@ if st.sidebar.checkbox("Lihat Tahun"):
           st.write(data_rendah)
 
           # Negara dengan jumlah produksi minyak 0
-          st.markdown("Negara yang tidak memiliki produksi minyak pada tahun %s"%(pilihanTahun))
+          st.subheader("Negara yang tidak memiliki produksi minyak pada tahun "+str(pilihanTahun))
           data = dataset[dataset["Tahun"] == pilihanTahun]
           data = data[data['Produksi'] == 0]
           hasil = data[['Negara','Tahun','Produksi','Kode','region','sub-region']]
