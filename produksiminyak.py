@@ -6,20 +6,7 @@ import streamlit as st
 st.set_page_config(page_icon = "ferris_wheel", layout = "wide")
 st.header("Pusat Informasi Negara Penghasil Minyak")
 # Creator
-st.markdown(" **by:** Femmy Khairany Hemas ** \nNIM:** 12220110 ** \nemail:** 12220110@mahasiswa.itb.ac.id")
-# Theme
-# Primary accent for interactive elements
-primaryColor = '#E5B2B2'
-# Background color for the main content area
-backgroundColor = '#C4E5B2'
-# Background color for sidebar and most interactive widgets
-secondaryBackgroundColor = '#B9F1C0'
-# Color used for almost all text
-textColor = '#FFFFFF'
-# Font family for all text in the app, except code blocks
-# Accepted values (serif | sans serif | monospace) 
-# Default: "sans serif"
-font = "sans serif"
+st.markdown("**Femmy Khairany Hemas** — **12220110**")
 
 # Membuat dataframe
 data_produksi_minyak = pd.read_csv('produksi_minyak_mentah.csv')
