@@ -5,7 +5,7 @@ import streamlit as st
 # Main Page
 st.set_page_config(page_title="Pusat Informasi Negara Penghasil Minyak", page_icon="penguin", layout="wide")
 col1, col2, col3 = st.columns((0.5, 1, 0.5))
-col1.image("oil rig.png", width=200)
+col1.image("oil tumpah.png", width=200)
 title = '<p style="font-family: sans-serif; font-size: 50px; text-align: center;"><b>Pusat Informasi Negara Penghasil Minyak</b></p>'
 col2.markdown(title, unsafe_allow_html=True)
 col3.image("logo_itb_1024.png", width=180)
